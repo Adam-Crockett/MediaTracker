@@ -8,7 +8,8 @@ import { CategoryListPipe } from "./category-list.pipe";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MediaItemFormComponent } from "./media-item-form.component";
 import { lookupLists, lookupListToken } from "./providers";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HttpXhrBackend } from "@angular/common/http";
+import { MockXHRBackend } from "./mock-xhr-backend";
 @NgModule({
   imports: [BrowserModule, ReactiveFormsModule, HttpClientModule],
   declarations: [
@@ -19,7 +20,10 @@ import { HttpClientModule } from "@angular/common/http";
     CategoryListPipe,
     MediaItemFormComponent
   ],
-  providers: [{ provide: lookupListToken, useValue: lookupLists }],
+  providers: [
+    { provide: lookupListToken, useValue: lookupLists },
+    { provide: HttpXhrBackend, useClass: MockXHRBackend }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

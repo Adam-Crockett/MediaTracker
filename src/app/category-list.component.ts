@@ -1,7 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: "mt-category-list",
+  selector: 'mt-category-list',
   template: `
     <span class="label" *ngFor="let category of categories">
       {{ category }}

@@ -1,14 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { MediaItemService, MediaItem } from "./media-item.service";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { MediaItemService, MediaItem } from './media-item.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: "mt-media-item-list",
-  templateUrl: "./media-item-list.component.html",
-  styleUrls: ["./media-item-list.component.css"]
+  selector: 'mt-media-item-list',
+  templateUrl: './media-item-list.component.html',
+  styleUrls: ['./media-item-list.component.css']
 })
 export class MediaItemListComponent implements OnInit {
-  medium = "";
+  medium = '';
   mediaItems: MediaItem[];
 
   constructor(
@@ -18,9 +18,9 @@ export class MediaItemListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      let medium = paramMap.get("medium");
-      if (medium.toLowerCase() === "all") {
-        medium = "";
+      let medium = paramMap.get('medium');
+      if (medium.toLowerCase() === 'all') {
+        medium = '';
       }
       this.getMediaItems(medium);
     });

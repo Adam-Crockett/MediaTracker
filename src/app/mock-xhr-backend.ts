@@ -3,52 +3,52 @@ import {
   HttpRequest,
   HttpResponse,
   HttpBackend
-} from "@angular/common/http";
-import { Observable, Observer } from "rxjs";
+} from '@angular/common/http';
+import { Observable, Observer } from 'rxjs';
 
 export class MockXHRBackend implements HttpBackend {
   private mediaItems = [
     {
       id: 1,
-      name: "Firebug",
-      medium: "Series",
-      category: "Science Fiction",
+      name: 'Firebug',
+      medium: 'Series',
+      category: 'Science Fiction',
       year: 2010,
       watchedOn: 1294166565384,
       isFavorite: false
     },
     {
       id: 2,
-      name: "The Small Tall",
-      medium: "Movies",
-      category: "Comedy",
+      name: 'The Small Tall',
+      medium: 'Movies',
+      category: 'Comedy',
       year: 2015,
       watchedOn: null,
       isFavorite: true
     },
     {
       id: 3,
-      name: "The Redemption",
-      medium: "Movies",
-      category: "Action",
+      name: 'The Redemption',
+      medium: 'Movies',
+      category: 'Action',
       year: 2016,
       watchedOn: null,
       isFavorite: false
     },
     {
       id: 4,
-      name: "Hoopers",
-      medium: "Series",
-      category: "Drama",
+      name: 'Hoopers',
+      medium: 'Series',
+      category: 'Drama',
       year: null,
       watchedOn: null,
       isFavorite: true
     },
     {
       id: 5,
-      name: "Happy Joe: Cheery Road",
-      medium: "Movies",
-      category: "Action",
+      name: 'Happy Joe: Cheery Road',
+      medium: 'Movies',
+      category: 'Action',
       year: 2015,
       watchedOn: 1457166565384,
       isFavorite: false
@@ -59,16 +59,16 @@ export class MockXHRBackend implements HttpBackend {
     return new Observable((responseObserver: Observer<HttpResponse<any>>) => {
       let responseOptions;
       switch (request.method) {
-        case "GET":
+        case 'GET':
           if (
-            request.urlWithParams.indexOf("mediaitems?medium=") >= 0 ||
-            request.url === "mediaitems"
+            request.urlWithParams.indexOf('mediaitems?medium=') >= 0 ||
+            request.url === 'mediaitems'
           ) {
             let medium;
-            if (request.urlWithParams.indexOf("?") >= 0) {
-              medium = request.urlWithParams.split("=")[1];
-              if (medium === "undefined") {
-                medium = "";
+            if (request.urlWithParams.indexOf('?') >= 0) {
+              medium = request.urlWithParams.split('=')[1];
+              if (medium === 'undefined') {
+                medium = '';
               }
             }
             let mediaItems;
@@ -83,7 +83,7 @@ export class MockXHRBackend implements HttpBackend {
             };
           } else {
             let mediaItems;
-            const idToFind = parseInt(request.url.split("/")[1], 10);
+            const idToFind = parseInt(request.url.split('/')[1], 10);
             mediaItems = this.mediaItems.filter(i => i.id === idToFind);
             responseOptions = {
               body: JSON.parse(JSON.stringify(mediaItems[0])),
@@ -91,14 +91,14 @@ export class MockXHRBackend implements HttpBackend {
             };
           }
           break;
-        case "POST":
+        case 'POST':
           const mediaItem = request.body;
           mediaItem.id = this._getNewId();
           this.mediaItems.push(mediaItem);
           responseOptions = { status: 201 };
           break;
-        case "DELETE":
-          const id = parseInt(request.url.split("/")[1], 10);
+        case 'DELETE':
+          const id = parseInt(request.url.split('/')[1], 10);
           this._deleteMediaItem(id);
           responseOptions = { status: 200 };
       }

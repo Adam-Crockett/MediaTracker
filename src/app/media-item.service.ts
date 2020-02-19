@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { map, catchError } from "rxjs/operators";
-import { throwError } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class MediaItemService {
   constructor(private http: HttpClient) {}
@@ -13,7 +13,7 @@ export class MediaItemService {
     const getOptions = {
       params: { medium }
     };
-    return this.http.get<MediaItemResponse>("mediaitems", getOptions).pipe(
+    return this.http.get<MediaItemResponse>('mediaitems', getOptions).pipe(
       map(response => {
         return response.mediaItems;
       }),
@@ -22,7 +22,7 @@ export class MediaItemService {
   }
 
   add(mediaItem) {
-    return this.http.post("mediaitems", mediaItem);
+    return this.http.post('mediaitems', mediaItem);
   }
 
   delete(mediaItem) {
@@ -33,7 +33,7 @@ export class MediaItemService {
 
   private handleError(error: HttpErrorResponse) {
     console.log(error.message);
-    return throwError("A data error occured, please try again.");
+    return throwError('A data error occured, please try again.');
   }
 }
 

@@ -1,17 +1,17 @@
-import { Routes, RouterModule } from "@angular/router";
-import { MediaItemListComponent } from "./media-item-list.component";
+import { Routes, RouterModule } from '@angular/router';
+import { MediaItemListComponent } from './media-item-list.component';
 
 const appRoutes: Routes = [
   {
-    path: "add",
+    path: 'add',
     loadChildren: () =>
-      import("./new-item/new-item.module").then(m => m.NewItemModule)
+      import('./new-item/new-item.module').then(m => m.NewItemModule)
   },
-  { path: ":medium", component: MediaItemListComponent },
+  { path: ':medium', component: MediaItemListComponent },
   {
-    path: "",
-    redirectTo: "all",
-    pathMatch: "full"
+    path: '',
+    redirectTo: 'all',
+    pathMatch: 'full'
   }
 ];
 

@@ -9,6 +9,7 @@ import { lookupLists, lookupListToken } from "./providers";
 import { HttpClientModule, HttpXhrBackend } from "@angular/common/http";
 import { MockXHRBackend } from "./mock-xhr-backend";
 import { routing } from "./app.routing";
+import { CategoryListComponent } from "./category-list.component";
 
 @NgModule({
   imports: [BrowserModule, HttpClientModule, routing],
@@ -17,7 +18,8 @@ import { routing } from "./app.routing";
     MediaItemComponent,
     MediaItemListComponent,
     FavoriteDirective,
-    CategoryListPipe
+    CategoryListPipe,
+    CategoryListComponent
   ],
   providers: [
     { provide: lookupListToken, useValue: lookupLists },
